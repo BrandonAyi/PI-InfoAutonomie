@@ -56,6 +56,13 @@ public class WristService extends Service {
 
     }
 
+    public void onDestroy(){
+
+        super.onDestroy();
+        wakelock.release();
+
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

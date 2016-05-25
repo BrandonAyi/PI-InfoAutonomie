@@ -9,6 +9,10 @@ GET           /                                         controllers.Application.
 # no link
 GET           /init                                     controllers.Application.init()
 
+# Mobile autonomie
+GET           /MobileAutonomie                          controllers.MobileAutonomieController.mobileAutonomie()
+POST          /MobileAutonomie/Data                     controllers.MobileAutonomieController.getData()
+
 # Raw values
 GET           /raw/data                                 controllers.RawDataController.list(p:Int ?= 0, s ?= "timestamp", o ?= "desc", f ?= "", a ?= "10", begin ?= "", end ?= "")
 GET           /raw/graph                                controllers.RawDataController.graph(f ?= "", begin ?= "", end ?= "")

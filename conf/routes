@@ -9,6 +9,9 @@ GET           /                                         controllers.Application.
 # no link
 GET           /init                                     controllers.Application.init()
 
+# Montre Withings
+GET           /WithingsData                             controllers.WithingsDataController.withingsData()
+
 # Mobile autonomie
 GET           /MobileAutonomie                          controllers.MobileAutonomieController.mobileAutonomie()
 POST          /MobileAutonomie/Data                     controllers.MobileAutonomieController.getData()

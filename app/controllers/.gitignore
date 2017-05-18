@@ -10,3 +10,5 @@
 /SensorController.class
 /WebAuthentication.class
 /WebAuthorization.class
+/WithingsDataController$JSONReader.class
+/WithingsDataController.class

@@ -2,6 +2,8 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import jsonUtils.*;
 import model.*;
 import play.libs.Json;
 import play.libs.Yaml;
@@ -17,7 +19,6 @@ import play.data.DynamicForm;
 import play.data.Form;
 import java.util.List;
 
-
 import static play.data.Form.form;
 
 /**
@@ -25,6 +26,7 @@ import static play.data.Form.form;
  */
 @Security.Authenticated(WebAuthentication.class)
 public class WithingsDataController extends Controller {
+	
 
     /**
      * Loads the home page of the application.
@@ -55,4 +57,5 @@ public class WithingsDataController extends Controller {
 //        }
                return ok(withingsData.render(json));
     }
+
 }

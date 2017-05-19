@@ -38,7 +38,16 @@ import static play.data.Form.form;
 @Security.Authenticated(WebAuthentication.class)
 public class WithingsDataController extends Controller {
 
-	static String datas;
+	static String date = "";
+    static String heure="";
+    static Integer steps=0;
+    static Double distance=0.0;
+    static Double totalCalories=0.0;
+    static Integer pulse=0;
+    static Integer durationToSleep=0;
+    static Integer lightSleepDuration=0;
+    static Integer deepSleepDuration=0;
+    static Integer sleepDuration=0;
 
     static List<ArrayList<String>> stockList = new ArrayList<ArrayList<String>>();
 
@@ -49,7 +58,7 @@ public class WithingsDataController extends Controller {
      */
     public static Result withings() throws IOException, JSONException {
 
-        String content = "";
+        /*String content = "";
         ArrayList<String> temp = new ArrayList<String>();
 
         content=getDataFromUrl();
@@ -60,16 +69,19 @@ public class WithingsDataController extends Controller {
             temp.add(str[i]);
         }
         stockList.add(temp);
-        temp = new ArrayList<String>();
+        temp = new ArrayList<String>();*/
 
 
-        return ok(withingsPage.render(stockList));
+        //return ok(withingsPage.render(stockList));
+
+        return saveData();
     }
 
 
     public static Result saveData() throws IOException, JSONException {
 
-        datas=getDataFromUrl();
+
+        String datas=getDataFromUrl();
         stockList = new ArrayList<ArrayList<String>>();
 
         File file=new File("data.txt");
@@ -107,8 +119,8 @@ public class WithingsDataController extends Controller {
         catch (Exception e){}
 
 
-        return redirect(controllers.routes.WithingsDataController.withings());
-        //return ok(withingsPage.render(stockList));
+        //return redirect(controllers.routes.WithingsDataController.withings());
+        return ok(withingsPage.render(stockList));
     }
 
     public static Result getData() {
@@ -121,7 +133,7 @@ public class WithingsDataController extends Controller {
 
         public static String getDataFromUrl() throws IOException, JSONException {
 
-        String date = "";
+        /*String date = "";
         String heure="";
         Integer steps=0;
         Double distance=0.0;
@@ -130,7 +142,7 @@ public class WithingsDataController extends Controller {
         Integer durationToSleep=0;
         Integer lightSleepDuration=0;
         Integer deepSleepDuration=0;
-        Integer sleepDuration=0;
+        Integer sleepDuration=0;*/
 
         
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");

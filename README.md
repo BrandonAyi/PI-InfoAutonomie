@@ -6,4 +6,6 @@
 
 ## Usage
 
-To run this application, type `./activator run` in your terminal.
+To run this application, type `sudo ./activator run` in your terminal.
+
+Open your navigator and go on localhost:9000

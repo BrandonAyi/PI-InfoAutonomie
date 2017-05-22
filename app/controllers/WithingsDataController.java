@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Number;
 
 import static play.data.Form.form;
 
@@ -132,36 +133,23 @@ public class WithingsDataController extends Controller {
     }
 
         public static String getDataFromUrl() throws IOException, JSONException {
-
-        /*String date = "";
-        String heure="";
-        Integer steps=0;
-        Double distance=0.0;
-        Double totalCalories=0.0;
-        Integer pulse=0;
-        Integer durationToSleep=0;
-        Integer lightSleepDuration=0;
-        Integer deepSleepDuration=0;
-        Integer sleepDuration=0;*/
-
         
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         date = df.format(Calendar.getInstance().getTime());
         SimpleDateFormat hf = new SimpleDateFormat ("HH:mm");    
         Date currentTime_12 = new Date();    
         heure = hf.format(currentTime_12);
-        //date="2017-05-17";
 
-        JSONObject jsonBody = readJsonFromUrl("https://wbsapi.withings.net/v2/measure?action=getactivity&date="+date+"&oauth_callback=https://github.com/BrandonAyi/MyOBApp&oauth_consumer_key=07422690e2b4be3eb396d509c796f607eb54fd59d9109e4c94292352206e&oauth_nonce=10e305a7bdf032b4e789f1542015ae8b&oauth_signature=rg%2BRzTmjAWjj11NFE%2Bm8FuRg7gA%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1494936737&oauth_token=429df174237c17de536937623812cbb49d809281e98bc7f70b598101f780789&oauth_version=1.0&userid=13569087");
+        JSONObject jsonBody = readJsonFromUrl("http://wbsapi.withings.net/v2/measure?action=getactivity&date="+date+"&oauth_callback=https://github.com/BrandonAyi/PI-InfoAutonomie&oauth_consumer_key=07422690e2b4be3eb396d509c796f607eb54fd59d9109e4c94292352206e&oauth_nonce=037be00197b955551c504bd65dc88419&oauth_signature=ztCOm1cjlSdK39xzP8rgZ7ze7kQ%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1495443062&oauth_token=c287780131b140b7e22919ff4c1c22b4980656cecc461524c329872e3154&oauth_version=1.0&userid=13618457");
         JSONObject body1 = (JSONObject) jsonBody.get("body");
         if (body1.has("steps"))
             steps = (Integer) body1.get("steps");
         if (body1.has("distance"))
-            distance = (Double) body1.get("distance");
+            distance = (double) body1.get("distance");
         if (body1.has("totalcalories"))
-            totalCalories = (Double) body1.get("totalcalories");
+            totalCalories = (double) body1.get("totalcalories");
         
-        JSONObject jsonSleep = readJsonFromUrl("https://wbsapi.withings.net/v2/sleep?action=getsummary&date="+date+"&oauth_callback=https://github.com/BrandonAyi/MyOBApp&oauth_consumer_key=07422690e2b4be3eb396d509c796f607eb54fd59d9109e4c94292352206e&oauth_nonce=e7803aa0dec34e2ccec3e18c17e19692&oauth_signature=2YR%2BNWflgSBTuj7QbzGKRXgxb%2B0%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1494968903&oauth_token=429df174237c17de536937623812cbb49d809281e98bc7f70b598101f780789&oauth_version=1.0&userid=13569087");
+        JSONObject jsonSleep = readJsonFromUrl("https://wbsapi.withings.net/v2/sleep?action=getsummary&date="+date+"&oauth_callback=https://github.com/BrandonAyi/PI-InfoAutonomie&oauth_consumer_key=07422690e2b4be3eb396d509c796f607eb54fd59d9109e4c94292352206e&oauth_nonce=769ffb227e333e96e6d497c16486cfcf&oauth_signature=c02NsaSXAyb0BMvOXoh1UU110GQ%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1495442608&oauth_token=c287780131b140b7e22919ff4c1c22b4980656cecc461524c329872e3154&oauth_version=1.0&userid=13618457");
         JSONObject body2 = (JSONObject) jsonSleep.get("body");
         JSONArray series = (JSONArray) body2.get("series");
         
@@ -174,7 +162,6 @@ public class WithingsDataController extends Controller {
                 
                     JSONObject objectData = (JSONObject) series.get(i);         
                     JSONObject data = (JSONObject) objectData.get("data");
-            
                     
                     Integer endTime = (Integer) objectData.get("enddate");
                     Integer startTime = (Integer) objectData.get("startdate");
@@ -189,10 +176,10 @@ public class WithingsDataController extends Controller {
             
         }
 
-        JSONObject jsonMeas = readJsonFromUrl("https://wbsapi.withings.net/measure?action=getmeas&date="+date+"&meastype=11&oauth_callback=https://github.com/BrandonAyi/MyOBApp&oauth_consumer_key=07422690e2b4be3eb396d509c796f607eb54fd59d9109e4c94292352206e&oauth_nonce=e154c6adf9e1dd1c9c4e7d61cf8a2cf9&oauth_signature=3HBvfKCk%2F7Y%2BwJXvRekf6BzYKPA%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1494970726&oauth_token=429df174237c17de536937623812cbb49d809281e98bc7f70b598101f780789&oauth_version=1.0&userid=13569087");
+        JSONObject jsonMeas = readJsonFromUrl("http://wbsapi.withings.net/measure?action=getmeas&date="+date+"&meastype=11&oauth_callback=https://github.com/BrandonAyi/PI-InfoAutonomie&oauth_consumer_key=07422690e2b4be3eb396d509c796f607eb54fd59d9109e4c94292352206e&oauth_nonce=250884474336c4f7a9eb1180a37a61ec&oauth_signature=PqJuvY9XCi2bvnfFiWHKVaXjmaw%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1495442749&oauth_token=c287780131b140b7e22919ff4c1c22b4980656cecc461524c329872e3154&oauth_version=1.0&userid=13618457");
         JSONObject body3 = (JSONObject) jsonMeas.get("body");
         JSONArray measuregrps = (JSONArray) body3.get("measuregrps");
-        JSONObject measures = (JSONObject) measuregrps.get(1);
+        JSONObject measures = (JSONObject) measuregrps.get(0);
         JSONArray measures2 = (JSONArray) measures.get("measures");
         pulse = (Integer) ((JSONObject) measures2.get(0)).get("value");
         

@@ -1,4 +1,4 @@
-@(content: String)
+@(positions: List[ArrayList[String]])
 
 @main("Raw data") {
 
@@ -16,48 +16,12 @@
                 <!-- /.row -->
 
             <div class="row">
-        @content
-            <div id="map" style="width: 100%; height: 400px;"></div>
+            <div id="map" style="width: 100%; height: 700px;"></div>
 
             </div>
             <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
             <script type="text/javascript">
-
-  /*          $(document).ready(function() {
-                $.ajax({
-                type: "GET",
-                url: "route_26_0.csv",
-                dataType: "text",
-                success: function(data) {processData(data);}
-                });
-            });
-
-            function processData(allText) {
-                var allTextLines = allText.split(/\r\n|\n/);
-                var headers = allTextLines[0].split(',');
-                var lines = [];
-
-                for (var i=1; i<allTextLines.length; i++) {
-                    var data = allTextLines[i].split(',');
-                    if (data.length == headers.length) {
-
-                        var tarr = [];
-                        for (var j=0; j<headers.length; j++) {
-                            tarr.push(headers[j]+":"+data[j]);
-                        }
-                        lines.push(tarr);
-                    }
-                }
-                //alert(lines);
-            }*/
-
-                    var locations = [
-                        [48.86, 2.33],
-                        [48.6577016, 6.1441681],
-                        [48.6597016, 6.1431681],
-                        [48.6677016, 6.1491681],
-                    ];
 
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 13,
@@ -66,18 +30,21 @@
                     });
 
                     var infowindow = new google.maps.InfoWindow();
-                    var marker, i;
-                    for (i = 0; i < locations.length; i++) {
+                    var marker, i=0;
+                    //for (var i = 0; i < @positions.length; i++) {
+                    @for(position <- positions) {
+
                         marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                            position: new google.maps.LatLng(@position.get(0), @position.get(0)),
                             map: map
                         });
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                             return function() {
-                                infowindow.setContent(locations[i][0]);
+                                infowindow.setContent(@position.get(0));
                                 infowindow.open(map, marker);
                             }
                         })(marker, i));
+                        i++;
                     }
             </script>
 
@@ -87,4 +54,5 @@
     </div>
         <!-- /#wrapper -->
 
+}
 }

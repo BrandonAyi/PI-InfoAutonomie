@@ -1,0 +1,10 @@
+Deux nouvelles vues : MobileAutonomie et WithingsData
+Deux nouveaux controleurs : MobileAutonomieController & WithingsDataController
+
+Les données de la montre sont récupérées en local dans le fichier à la racine : "data.txt"
+Les données de la carte dans l'onglet MobileAutonomie sont en local dans le fichier à la racine : "data.csv"
+
+Pour supprimer des lignes du tableau des données de la montre sur la plateforme, il suffit de les supprimer dans la base de données (fichier data.txt)
+
+compte withings : info-autonomie@telecomnancy.eu
+mot de passe : livinglab54

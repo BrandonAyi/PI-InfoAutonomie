@@ -12,7 +12,6 @@ GET           /init                                     controllers.Application.
 # Montre Withings
 GET           /WithingsData/data                        controllers.WithingsDataController.withings()
 GET          /WithingsData/save                       	controllers.WithingsDataController.saveData()
-#GET           /WithingsData/save                       controllers.WithingsDataController.getData()
 
 # Mobile autonomie
 GET           /MobileAutonomie                          controllers.MobileAutonomieController.mobileAutonomie()

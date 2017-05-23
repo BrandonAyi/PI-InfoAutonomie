@@ -59,22 +59,6 @@ public class WithingsDataController extends Controller {
      */
     public static Result withings() throws IOException, JSONException {
 
-        /*String content = "";
-        ArrayList<String> temp = new ArrayList<String>();
-
-        content=getDataFromUrl();
-
-        String[] str = content.split(";");
-        //temp = new ArrayList<String>();
-        for (int i=0; i<str.length; i++) {
-            temp.add(str[i]);
-        }
-        stockList.add(temp);
-        temp = new ArrayList<String>();*/
-
-
-        //return ok(withingsPage.render(stockList));
-
         return saveData();
     }
 
